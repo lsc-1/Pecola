@@ -77,7 +77,7 @@ class TextAugmenter:
         
         new_words = [word if idx not in deleted_indices else "<mask>" for idx, word in enumerate(words)]
         return self.small_fix(self.joint_str.join(new_words))
-    def small_fix(text):
+    def small_fix(self,text):
         puncs = ',.，。!?！？;；、'
         for punc in puncs:
             text = text.replace(' ' + punc, punc)
@@ -125,13 +125,13 @@ class T5TextProcessor:
         tokens = self.tokenizer(texts, return_tensors="pt", padding=True).to(self.device)
         outputs = self.model.generate(**tokens, max_length=512, do_sample=True, top_p=1.0, num_return_sequences=1, eos_token_id=stop_id)
         return self.tokenizer.batch_decode(outputs, skip_special_tokens=False)
-    def extract_fills(texts):
+    def extract_fills(self,texts):
         texts = [x.replace("<pad>", "").replace("</s>", "").strip() for x in texts]
         pattern = re.compile(r"<extra_id_\d+>")
         extracted_fills = [pattern.split(x)[1:-1] for x in texts]
         extracted_fills = [[y.strip() for y in x] for x in extracted_fills]
         return extracted_fills
-    def apply_extracted_fills(masked_texts, extracted_fills):
+    def apply_extracted_fills(self,masked_texts, extracted_fills):
         tokens = [x.split(' ') for x in masked_texts]
         n_expected = [len([x for x in text.split() if x.startswith("<extra_id_")]) for text in masked_texts]
         for idx, (text, fills, n) in enumerate(zip(tokens, extracted_fills, n_expected)):
@@ -143,7 +143,7 @@ class T5TextProcessor:
         texts = [" ".join(x) for x in tokens]
         return texts
 
-    def split_text_for_t5(text, tokenizer, max_length=300):
+    def split_text_for_t5(self,text, tokenizer, max_length=300):
         tokens = tokenizer.tokenize(text)
         start_idx = 0
         last_period_idx = 0
