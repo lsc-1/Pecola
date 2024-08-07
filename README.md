@@ -10,7 +10,7 @@ This dataset implements the MGT detection algorithms developed by us (Pecola,ACL
 | Dataset |  Paper | 
 | --------- | ------ | 
 | Grover | [Defending Against Neural Fake News](https://proceedings.neurips.cc/paper/2019/file/3e9f0fc9b2f89e043bc6233994dfcf76-Paper.pdf) (NeurIPS 2019) |
-| GPT2 | [Gpt-2 output dataset. Website](https://github.com/openai/gpt-2-output-dataset) |
+| GPT2 | [Gpt-2 output dataset. Website](https://github.com/openai/gpt-2-output-dataset) (openai 2019)|
 | GPT3.5 | [COCO: Coherence-Enhanced Machine-Generated Text Detection Under LowResource With Contrastive Learning](https://aclanthology.org/2023.emnlp-main.1005.pdf) (EMNLP 2023) |
 | HC3 |  [HowClose is ChatGPT to Human Experts? Comparison Corpus, Evaluation, and Detection](https://arxiv.org/pdf/2301.07597) |
 
